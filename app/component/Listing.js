@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { BathIcon, BedDouble, MapPin, Ruler, Search } from 'lucide-react'
 import GoogleAddressSearch from './GoogleAddressSearch'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 function Listing({listing,handleSearchClick,searchedAddress}) {
   return (
     <div>
@@ -15,12 +16,13 @@ function Listing({listing,handleSearchClick,searchedAddress}) {
         </div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         {listing?.length>0? listing.map((item,index)=>(
+            <Link href={'/view-listing/'+item.id}>
             <div key={item.id} className='p-3 hover:border hover:bg-slate-100 rounded-lg cursor-pointer'>
                 <Image src={item.listingImages[0].url}
+                alt={`Image of ${item.address}`} // Add a descriptive alt text
                 width={800}
                 height={150}
                 className='rounded-lg object-cover h-[170px]'/>
-
                 <div className='flex mt-2 flex-col gap-2'>
                     <h2 className='font-bold text-xl'>Rs.{item.price}</h2>
                     <h2 className='flex gap-2 text-sm text-gray-400'>
@@ -43,6 +45,7 @@ function Listing({listing,handleSearchClick,searchedAddress}) {
                     </div>
                 </div>
             </div>
+            </Link>
         ))
         :[1,2,3,4,5,6,7,8].map((item,index)=>(
             <div key={index} className='h-[230px] w-full 
