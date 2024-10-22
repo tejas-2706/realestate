@@ -34,7 +34,10 @@ const ViewListing = ({ type }) => {
                 <div className='flex flex-col w-1/2 gap-5'>
                     {listing?.length > 0 ? listing.map((item, index) => (
                         <div key={item.id} className='p-3 hover:border hover:bg-slate-100 rounded-lg cursor-pointer'>
-                            <img src={item.listingImages[0].url}
+                            <div>
+                                {console.log(item.listingImages[0]?.url)}
+                            </div>
+                            <img src={item.listingImages[0]?.url}
                                 width={800}
                                 height={150}
                                 className='rounded-lg object-cover h-[170px]' 
