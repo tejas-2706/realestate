@@ -31,9 +31,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import PDFUpload from '../_components/PDFUpload'
 
 function EditListing({ params }) {
   const [images, setImages] = useState([]);
+  const [iimages, setIimages] = useState([]);
   // const params = usePathname();
   // const {user} = useUser();
   // const { data: session } = useSession();
@@ -90,7 +92,7 @@ function EditListing({ params }) {
         toast("error uploading!!")
       }
       else {
-        const imageUrl=process.env.NEXT_PUBLIC_IMAGE_URL+fileName;
+        const imageUrl='https://vvusdphcwzgeyjuavneg.supabase.co/storage/v1/object/public/listingImages/'+fileName;
         const {data,error}= await supabase
           .from("listingImages")
           .insert([
@@ -99,7 +101,32 @@ function EditListing({ params }) {
           .select();
       }
     }
+
+    for (const iimage of iimages) {
+      const file = iimage;
+      const fileName = Date.now().toString();
+      const fileExt = fileName.split('.').pop();
+      const { data, error } = await supabase.storage.from('listingPDFs').upload(`${fileName}`, file, {
+        contentType: `image/${fileExt}`,
+        upsert: false
+      });
+
+      if (error) {
+        console.log(error);
+        toast("error uploading!!")
+      }
+      else {
+        const iimageUrl='https://vvusdphcwzgeyjuavneg.supabase.co/storage/v1/object/public/listingPDFs/'+fileName;
+        const {data,error}= await supabase
+          .from("listingPDFs")
+          .insert([
+          {url: iimageUrl, listing_id:params?.id}
+          ])
+          .select();
+      }
+    }
   }
+
   const publishBtnHandler = async() => {
 
       const { data, error } = await supabase
@@ -219,6 +246,11 @@ function EditListing({ params }) {
               <div>
                 <h2 className='font-lg text-gray-500 my-2'>Upload Property Images</h2>
                 <FileUpload setImages={(value) => setImages(value)} />
+              </div>
+
+              <div>
+                <h2 className='font-lg text-gray-500 my-2'>Upload Property PDF</h2>
+                <PDFUpload setIimages={(valuepdf) => setIimages(valuepdf)} />
               </div>
 
               <div className='flex gap-7 justify-end'>
