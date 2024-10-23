@@ -66,7 +66,7 @@ function Details({ listingDetail }) {
                 <p className='text-gray-600'>{listingDetail?.description}</p>
 
             </div>
-            <div>
+            {/* <div>
                 <h2 className='font-bold text-2xl'>
                     Find On Map
                 </h2>
@@ -74,9 +74,11 @@ function Details({ listingDetail }) {
                     coordinates={listingDetail.OlaMaps}
                     listing={[listingDetail]}
                 />
-            </div>
+            </div> */}
             <div>
-                <AgentDetails listingDetail={listingDetail}/>
+                <h2 className='font-bold text-2xl'>Contact Details</h2>
+
+                <AgentDetails listingDetail={listingDetail} />
             </div>
         </div>
     )
