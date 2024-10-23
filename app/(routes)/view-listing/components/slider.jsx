@@ -17,7 +17,7 @@ function Slider({ imageList }) {
                 <Carousel>
                     <CarouselContent>
                         {imageList.map((item,index) => (
-                            <CarouselItem>
+                            <CarouselItem key={item.id || index}>
                                 <img src={item.url || index} width={800}
                                     height={300}
                                     alt='image'

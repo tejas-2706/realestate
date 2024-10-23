@@ -26,7 +26,8 @@ function Details({ listingDetail }) {
             <hr></hr>
             <div className='mt-4 flex flex-col gap-3'>
                 <h2 className='font-bold text-2xl'> key Features</h2>
-                <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+                {/* change for vecel here */}
+                <div key={listingDetail?.id} className='grid grid-cols-2 md:grid-cols-3 gap-4'>
                     <h2 className='flex gap-2 items-center bg-purple-100    
             rounded-lg text-primary justify-center '>
                         {listingDetail?.propertyType}
@@ -61,7 +62,7 @@ function Details({ listingDetail }) {
 
             <div className='mt-4'>
                 <h2 className='font-bold text-2xl'>
-                    What's Special
+                    Whats Special
                 </h2>
                 <p className='text-gray-600'>{listingDetail?.description}</p>
 

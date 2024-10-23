@@ -16,8 +16,9 @@ function Listing({listing,handleSearchClick,searchedAddress}) {
         </div>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         {listing?.length>0? listing.map((item,index)=>(
-            <Link href={'/view-listing/'+item.id}>
-            <div key={item.id} className='p-3 hover:border hover:bg-slate-100 rounded-lg cursor-pointer'>
+            // change for vercel
+            <Link key={item.id} href={'/view-listing/'+item.id}>
+            <div className='p-3 hover:border hover:bg-slate-100 rounded-lg cursor-pointer'>
                 <Image src={item.listingImages[0].url}
                 alt={`Image of ${item.address}`} // Add a descriptive alt text
                 width={800}
