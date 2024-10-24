@@ -118,9 +118,9 @@ function EditListing({ params }) {
       else {
         const iimageUrl='https://vvusdphcwzgeyjuavneg.supabase.co/storage/v1/object/public/listingPDFs/'+fileName;
         const {data,error}= await supabase
-          .from("listingPDFs")
+          .from("listingDocs")
           .insert([
-          {url: iimageUrl, listing_id:params?.id}
+          {new_url: iimageUrl, listing_id:params?.id}
           ])
           .select();
       }

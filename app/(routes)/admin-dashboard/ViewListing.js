@@ -15,16 +15,16 @@ const ViewListing = ({ type }) => {
         setListing(data);
         console.log(data);
     };
-    const handlePublish = async(id)=>{
-       const { data, error } = await supabase
-      .from('listing')
-      .update({ active: true })
-      .eq('id', id)
-      .select()
+    const handlePublish = async (id) => {
+        const { data, error } = await supabase
+            .from('listing')
+            .update({ active: true })
+            .eq('id', id)
+            .select()
 
-      if(data){
-        toast('Listing Published!!')
-      }
+        if (data) {
+            toast('Listing Published!!')
+        }
     }
     return (
         <div>
@@ -37,8 +37,8 @@ const ViewListing = ({ type }) => {
                             <img src={item.listingImages[0]?.url}
                                 width={800}
                                 height={150}
-                                className='rounded-lg object-cover h-[170px]' 
-                                alt={item.address||'Listing Image'}/>
+                                className='rounded-lg object-cover h-[170px]'
+                                alt={item.address || 'Listing Image'} />
 
                             <div className='flex mt-2 flex-col gap-2'>
                                 <h2 className='font-bold text-xl'>Rs.{item.price}</h2>
@@ -62,10 +62,18 @@ const ViewListing = ({ type }) => {
                                     <h2>
                                         {item.id}
                                     </h2>
+                                    {/* <h2>
+                                        {item?.listingDocs &&
+                                            item.listingDocs[0]?.new_url}
+                                    </h2> */}
+
                                 </div>
                             </div>
                             <div className='flex py-4 items-center justify-center'>
-                                <Button onClick={()=>{handlePublish(item.id)}}>Allow Publish</Button>
+                                <Button onClick={() => { handlePublish(item.id) }}>Allow Publish</Button>
+                                <Button onClick={() => window.open(item?.listingDocs && item.listingDocs[0]?.new_url)}>
+                                    PDF
+                                </Button>
                             </div>
                         </div>
                     ))
