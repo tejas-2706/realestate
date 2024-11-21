@@ -45,7 +45,7 @@ const toggleDropdown = () => {
         <ul className="hidden md:flex gap-10">
           <Link href={'/'}><li className={`'hover:bg-slate-100 px-4 p-2 cursor-pointer rounded-lg text-black' ${path=='/' && 'bg-slate-200 rounded-lg text-black'}`}>Sell</li></Link>
           <Link href={'/rent'}><li className={`'hover:bg-slate-100 px-4 p-2 cursor-pointer rounded-lg text-black' ${path=='/rent' && 'bg-slate-200 rounded-lg text-black'}`} >Rent</li></Link>
-          <Link href={'/'}><li className="hover:bg-slate-100 px-4 p-2 cursor-pointer rounded-lg text-black">Agent finder</li></Link>
+          {/*<Link href={'/'}><li className="hover:bg-slate-100 px-4 p-2 cursor-pointer rounded-lg text-black">Agent finder</li></Link>*/}
           
         </ul>
       </div>
