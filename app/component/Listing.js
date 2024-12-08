@@ -19,7 +19,7 @@ function Listing({listing,handleSearchClick,searchedAddress}) {
             // change for vercel
             <Link key={item.id} href={'/view-listing/'+item.id}>
             <div className='p-3 hover:border hover:bg-slate-100 rounded-lg cursor-pointer'>
-                <Image src={item.listingImages[0].url}
+                <Image src={item.listingImages[0]?.url}
                 alt={`Image of ${item.address}`} // Add a descriptive alt text
                 width={800}
                 height={150}
